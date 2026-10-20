@@ -1,0 +1,142 @@
+[
+  {
+    "options": {
+      "mode": "random",
+      "seed": 0
+    },
+    "expected": {
+      "tier": "small",
+      "mode": "random",
+      "score": null,
+      "criteria": [],
+      "demo": false,
+      "message": "ABSOLUTELY BRILLIANT",
+      "messageIndex": 2,
+      "seed": 0,
+      "plan": {
+        "pattern": "quick",
+        "stops": [
+          418,
+          604,
+          836
+        ],
+        "resumeAt": 1719,
+        "revealAt": 836,
+        "marqueeAt": 2136
+      }
+    }
+  },
+  {
+    "options": {
+      "mode": "random",
+      "seed": 42
+    },
+    "expected": {
+      "tier": "medium",
+      "mode": "random",
+      "score": null,
+      "criteria": [],
+      "demo": false,
+      "message": "A STROKE OF GENIUS",
+      "messageIndex": 5,
+      "seed": 42,
+      "plan": {
+        "pattern": "tease",
+        "stops": [
+          517,
+          931,
+          4756
+        ],
+        "resumeAt": 5738,
+        "revealAt": 4756,
+        "marqueeAt": 6056
+      }
+    }
+  },
+  {
+    "options": {
+      "mode": "random",
+      "seed": 4294967295
+    },
+    "expected": {
+      "tier": "jackpot",
+      "mode": "random",
+      "score": null,
+      "criteria": [],
+      "demo": false,
+      "message": "YOUR CURIOSITY IS GOLD",
+      "messageIndex": 4,
+      "seed": 4294967295,
+      "plan": {
+        "pattern": "quick",
+        "stops": [
+          490,
+          708,
+          980
+        ],
+        "resumeAt": 2014,
+        "revealAt": 980,
+        "marqueeAt": 2280
+      }
+    }
+  },
+  {
+    "options": {
+      "demo": true,
+      "tier": "jackpot",
+      "pattern": "nudge",
+      "message": 3,
+      "seed": 42
+    },
+    "expected": {
+      "tier": "jackpot",
+      "mode": "demo",
+      "score": null,
+      "criteria": [],
+      "demo": true,
+      "message": "WHAT A BEAUTIFUL QUESTION",
+      "messageIndex": 3,
+      "seed": 42,
+      "plan": {
+        "pattern": "nudge",
+        "stops": [
+          510,
+          918,
+          1836
+        ],
+        "resumeAt": 2805,
+        "revealAt": 3125,
+        "marqueeAt": 4425
+      }
+    }
+  },
+  {
+    "options": {
+      "demo": true,
+      "tier": "jackpot",
+      "pattern": "revival",
+      "seed": 123
+    },
+    "expected": {
+      "tier": "jackpot",
+      "mode": "demo",
+      "score": null,
+      "criteria": [],
+      "demo": true,
+      "message": "YOUR CURIOSITY IS GOLD",
+      "messageIndex": 4,
+      "seed": 123,
+      "plan": {
+        "pattern": "revival",
+        "stops": [
+          468,
+          842,
+          1684
+        ],
+        "resumeAt": 3181,
+        "revealAt": 3881,
+        "marqueeAt": 5181
+      }
+    }
+  }
+]

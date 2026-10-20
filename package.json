@@ -1,0 +1,37 @@
+{
+  "name": "pi-slot",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Query-driven slot animations for Pi",
+  "scripts": {
+    "start": "sh ./start.sh",
+    "test": "node --test test/*.test.mjs"
+  },
+  "pi": {
+    "extensions": [
+      "./slot.ts"
+    ]
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": [
+    "pi-package"
+  ],
+  "files": [
+    "slot.ts",
+    "src/"
+  ],
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/butsugiri/pi-slot.git"
+  },
+  "homepage": "https://github.com/butsugiri/pi-slot#readme",
+  "bugs": {
+    "url": "https://github.com/butsugiri/pi-slot/issues"
+  }
+}

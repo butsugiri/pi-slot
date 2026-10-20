@@ -38,13 +38,13 @@ export function createRound(options: RoundOptions = {}, random = Math.random): R
   const evaluated = evaluateQuery(options.text ?? "");
   const requested = normalizeTier(options.tier ?? (options.demo ? "jackpot" : mode === "random" ? "random" : evaluated.tier));
   const tier = requested === "random" ? pick(TIERS, random) : requested;
-  if (!isTier(tier)) throw new Error("結果は miss / small / medium / jackpot / random を指定してください。");
+  if (!isTier(tier)) throw new Error("Result must be miss / small / medium / jackpot / random.");
   const available: Pattern[] = tier === "miss" ? ["quick", "reach", "tease"] : PATTERNS;
   const pattern = !options.pattern || options.pattern === "random" ? pick(available, random) : options.pattern;
-  if (!isPattern(pattern)) throw new Error("揃い方は quick / reach / tease / nudge / revival / random を指定してください。");
-  if (!available.includes(pattern)) throw new Error("ハズレでは nudge / revival は使えません。quick / reach / tease を指定してください。");
+  if (!isPattern(pattern)) throw new Error("Pattern must be quick / reach / tease / nudge / revival / random.");
+  if (!available.includes(pattern)) throw new Error("The miss result does not support nudge / revival. Use quick / reach / tease.");
   const messageIndex = !options.message || options.message === "random" ? Math.floor(random() * MESSAGES.length) : Number(options.message) - 1;
-  if (!Number.isInteger(messageIndex) || messageIndex < 0 || messageIndex >= MESSAGES.length) throw new Error("文言は --message 1〜5 または random を指定してください。");
+  if (!Number.isInteger(messageIndex) || messageIndex < 0 || messageIndex >= MESSAGES.length) throw new Error("Message must be --message 1..5 or random.");
   // Sample once per round. Rendering never resamples outcomes, timing, or copy.
   const speed = 0.9 + random() * 0.2;
   const schedules: Record<Pattern, number[]> = {

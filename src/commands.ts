@@ -13,33 +13,33 @@ export function parseDemoArgs(args: string): RoundOptions & { help?: boolean } {
     if (token === "--help" || token === "help") return { help: true };
     if (!token.startsWith("--")) { positional.push(token); continue; }
     const match = /^--(result|pattern|message|seed)(?:=(.+))?$/.exec(token);
-    if (!match) throw new Error(`不明な引数: ${token}`);
+    if (!match) throw new Error(`Unknown argument: ${token}`);
     const key = (match[1] === "result" ? "tier" : match[1]) as "tier" | "pattern" | "message" | "seed";
-    if (seen.has(key)) throw new Error(`引数が重複しています: ${key}`);
+    if (seen.has(key)) throw new Error(`Duplicate argument: ${key}`);
     seen.add(key);
     const value = match[2] ?? tokens[++i];
-    if (!value || value.startsWith("--")) throw new Error(`${token} に値が必要です。`);
+    if (!value || value.startsWith("--")) throw new Error(`${token} requires a value.`);
     options[key] = value;
   }
-  if (positional.length > 2) throw new Error("位置引数は結果・揃い方の2つまでです。");
+  if (positional.length > 2) throw new Error("At most two positional arguments are allowed: result and pattern.");
   for (const [i, key] of (["tier", "pattern"] as const).entries()) {
     if (positional[i]) {
-      if (seen.has(key)) throw new Error(`引数が重複しています: ${key}`);
+      if (seen.has(key)) throw new Error(`Duplicate argument: ${key}`);
       options[key] = positional[i];
     }
   }
   if (options.seed !== undefined) {
-    if (!/^\d+$/.test(options.seed) || Number(options.seed) > 4294967295) throw new Error("seed は 0〜4294967295 の整数で指定してください。");
+    if (!/^\d+$/.test(options.seed) || Number(options.seed) > 4294967295) throw new Error("Seed must be an integer from 0 to 4294967295.");
   }
   const { seed, ...rest } = options;
   return seed === undefined ? rest : { ...rest, seed: Number(seed) };
 }
 
 export function demoHelp() {
-  return `${DEMO_USAGE}\nquick: 即揃い / reach: 最後だけ長い / tease: 減速 / nudge: 1コマ再始動 / revival: 暗転から復活\n${MESSAGES.map((text, i) => `${i + 1}: ${text}`).join("\n")}\nnormal=miss、chance=small の旧名も使えます。`;
+  return `${DEMO_USAGE}\nquick: quick stop / reach: delayed last reel / tease: slowdown / nudge: one-symbol restart / revival: comeback after blackout\n${MESSAGES.map((text, i) => `${i + 1}: ${text}`).join("\n")}\nLegacy aliases are also supported: normal=miss, chance=small.`;
 }
 
-export const SLOT_USAGE = "使い方: /slot on|off|stop、/slot mode score|random、/slot intensity low|normal|high";
+export const SLOT_USAGE = "Usage: /slot on|off|stop, /slot mode score|random, /slot intensity low|normal|high";
 
 type SlotCommand =
   | { kind: "status" | "stop" }
@@ -59,5 +59,5 @@ export function parseSlotArgs(args: string): SlotCommand {
 }
 
 export function settingsCaption(settings: SlotSettings) {
-  return `スロット: ${settings.enabled ? "ON" : "OFF"} / 演出: ${settings.intensity} / モード: ${settings.mode}${settings.mode === "random" ? "（4種類・各25%）" : ""}`;
+  return `Slot: ${settings.enabled ? "ON" : "OFF"} / Intensity: ${settings.intensity} / Mode: ${settings.mode}${settings.mode === "random" ? " (4 outcomes, 25% each)" : ""}`;
 }

@@ -204,7 +204,7 @@ for (const mode of ["rpc", "print"]) {
     h.input();
     await h.command("", "slot-demo");
     assert.equal(h.overlays.length, 0);
-    assert.match(h.notices.at(-1).message, /対話モード/);
+    assert.match(h.notices.at(-1).message, /interactive mode/);
   });
 }
 

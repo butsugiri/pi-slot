@@ -65,7 +65,7 @@ export class SlotController {
     }).catch(() => {
       if (this.generation === current) {
         this.stop();
-        ctx.ui.notify("スロット演出を表示できませんでした。", "warning");
+        ctx.ui.notify("Unable to display the slot animation.", "warning");
       }
     }).finally(() => {
       if (this.generation === current) { this.dismiss = undefined; this.active = undefined; }

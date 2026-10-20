@@ -10,8 +10,8 @@ const demoResult = (tier = "jackpot") => makeDemo(tier, { pattern: "quick", mess
 test("Japanese prompts earn signals for context, purpose, constraints and verification", () => {
   const result = evaluateQuery("既存の pi を使って、スロットを実装したい。追加 API なしで動かし、テストで確認したい。");
   assert.equal(result.tier, "jackpot");
-  assert.ok(result.criteria.includes("制約"));
-  assert.ok(result.criteria.includes("検証"));
+  assert.ok(result.criteria.includes("Constraints"));
+  assert.ok(result.criteria.includes("Verification"));
 });
 test("repetition and length alone do not increase the score", () => {
   assert.deepEqual(evaluateQuery("したい".repeat(1000)), evaluateQuery("したい"));

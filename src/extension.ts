@@ -29,7 +29,7 @@ export function registerSlot(pi: ExtensionAPI, formatting: Pick<ViewOptions, "fo
   pi.on("agent_settled", (event) => { controller.finish(event.aborted); });
 
   pi.registerCommand("slot-demo", {
-    description: "演出を指定して試す。/slot-demo --help で引数一覧",
+    description: "Try a specific animation. Use /slot-demo --help to list arguments.",
     handler: async (args, ctx) => {
       let options: ReturnType<typeof parseDemoArgs>;
       try { options = parseDemoArgs(args); }
@@ -42,7 +42,7 @@ export function registerSlot(pi: ExtensionAPI, formatting: Pick<ViewOptions, "fo
         return;
       }
       if (ctx.mode !== "tui") {
-        ctx.ui.notify("スロット演出は対話モードで利用できます。", "info");
+        ctx.ui.notify("Slot animations are available in interactive mode.", "info");
         return;
       }
       try { controller.show(ctx, demoResult(options.tier ?? "jackpot", options), settings.intensity); }
@@ -50,7 +50,7 @@ export function registerSlot(pi: ExtensionAPI, formatting: Pick<ViewOptions, "fo
     },
   });
   pi.registerCommand("slot", {
-    description: "演出の設定: /slot [on|off|stop|mode score|random|intensity low|normal|high]",
+    description: "Animation settings: /slot [on|off|stop|mode score|random|intensity low|normal|high]",
     handler: async (args, ctx) => {
       let command: ReturnType<typeof parseSlotArgs>;
       try { command = parseSlotArgs(args); }

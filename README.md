@@ -2,6 +2,8 @@
 
 Slot machine animations for [pi](https://pi.dev), with live responses, rainbow jackpots, and confetti. Built for pi 1.3.0.
 
+![Jackpot animation in pi-slot](assets/jackpot.gif)
+
 ## Install
 
 ```sh
